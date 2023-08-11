@@ -1,27 +1,93 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```javascript
+npm create vite@latest --save
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+later or
+
+```javascript
+npm install
+```
+
+and
+
+```javascript
+npm run dev
+```
+
+# First section (Typing Props)
+
+```javascript
+// GreetProps.tsx
+export type GreetProps = {
+  name: string,
+};
+
+// Greet.tsx
+import { GreetProps } from "../types/GreetProps";
+
+export const Greet = (props: GreetProps) => {
+  return (
+    <div>
+      <h2> Welcome {props.name} ! You can begin ? </h2>
+    </div>
+  );
+};
+```
+
+# Basics Props
+
+```javascript
+const personList = [
+  {
+    firstName: "John",
+    lastName: "Edander",
+  },
+  {
+    firstName: "Bruce",
+    lastName: "Edander",
+  },
+  {
+    firstName: "Ayhan",
+    lastName: "Dasyuvarlar",
+  },
+];
+```
+
+```javascript
+type personListType = {
+  names: {
+    firstName: string,
+    lastName: string,
+  }[],
+};
+
+const PersonList = ({ names }: personListType) => {
+  return (
+    <div>
+      {names.map((name, idx) => (
+        <div key={idx}>{name.firstName + " " + name.lastName}</div>
+      ))}
+    </div>
+  );
+};
+
+export default PersonList;
+///////////////////
+
+type personPropsType = {
+  personName: { first: string; last: string };
+};
+
+const Person = ({ personName }: personPropsType) => {
+  return (
+    <h2>
+      {personName.first} {personName.last}
+    </h2>
+  );
+};
+
+export default Person;
+
+```
