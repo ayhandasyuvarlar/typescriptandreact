@@ -10,7 +10,8 @@ export const Greet = ({ isLogged, messageCount, name }: GreetProps) => {
     <div>
       {isLogged && (
         <h2>
-          Welcome {name} ! You have {messageCount} unread messages
+          Welcome {name} ! You have {messageCount ? messageCount : null} unread
+          messages
         </h2>
       )}
       {!isLogged && "Name"}

@@ -1,25 +1,16 @@
 import { Greet } from "./components/Greet";
-import PersonList from "./components/PersonList";
+import Heading from "./components/Heading";
+import Oscar from "./components/Oscar";
+import Status from "./components/Status";
 
 const App = () => {
-  const personList = [
-    {
-      firstName: "John",
-      lastName: "Edander",
-    },
-    {
-      firstName: "Bruce",
-      lastName: "Edander",
-    },
-    {
-      firstName: "Ayhan",
-      lastName: "Dasyuvarlar",
-    },
-  ];
   return (
     <div>
-      <Greet messageCount={20} name={"ayhan"} isLogged={true}></Greet>
-      <PersonList names={personList}></PersonList>
+      <Status status="successfully"></Status>
+      <Oscar>
+        <Heading>Hello Ayhan</Heading>
+      </Oscar>
+      <Greet isLogged={true}  name="Ayhan"></Greet>
     </div>
   );
 };
