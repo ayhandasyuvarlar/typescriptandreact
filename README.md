@@ -201,5 +201,81 @@ export default function Heading({ children }: HeadingProps) {
 }
 ```
 
-and finished advanced prop  => next lesson
- 
+and finished advanced prop => next lesson
+
+# Event Props
+
+📌Click Event
+📌Change Event
+
+```javascript 
+
+// 📌 Main Page
+
+
+import { useState } from "react";
+import Button from "./components/Button";
+import Input from "./components/Input";
+interface InputProps {
+  name: string;
+}
+const App: React.FC = () => {
+  const [userName, setUserName] = useState < InputProps > { name: "" };
+  const handleClick = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    id: number
+  ) => {
+    console.log(id, event);
+  };
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserName({ name: event.target.value });
+    console.log(userName);
+  };
+  return (
+    <div>
+      <Button handleClick={handleClick}></Button>
+      <Input value={userName.name} onChange={onChange} />
+    </div>
+  );
+};
+
+export default App;
+```
+
+```javascript
+// 📌 Compoponent and Type  Page
+export type ButtonProps = {
+  handleClick: (event: React.MouseEvent<HTMLButtonElement>, id: number) => void,
+};
+
+import React from "react";
+import { ButtonProps } from "../types/ButtonProps";
+
+const Button = (props: ButtonProps) => {
+  return (
+    <button onClick={(event) => props.handleClick(event, 1)}>Click</button>
+  );
+};
+
+export default Button;
+```
+
+```javascript
+
+// 📌 Compoponent and Type  Page
+
+
+export type InpuProps = {
+  value: string,
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void,
+};
+
+import { InpuProps } from "../types/InputProps";
+
+const Input = (props: InpuProps) => {
+  return <input value={props.value} onChange={props.onChange}></input>;
+};
+
+export default Input;
+```
+and finished event props =>  next lesson
