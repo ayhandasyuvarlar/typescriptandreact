@@ -208,10 +208,8 @@ and finished advanced prop => next lesson
 📌Click Event
 📌Change Event
 
-```javascript 
-
+```javascript
 // 📌 Main Page
-
 
 import { useState } from "react";
 import Button from "./components/Button";
@@ -261,9 +259,7 @@ export default Button;
 ```
 
 ```javascript
-
 // 📌 Compoponent and Type  Page
-
 
 export type InpuProps = {
   value: string,
@@ -278,4 +274,40 @@ const Input = (props: InpuProps) => {
 
 export default Input;
 ```
-and finished event props =>  next lesson
+
+and finished event props => next lesson
+
+# Style Props
+
+```jsx
+import React from "react";
+import Container from "./components/Container";
+
+const App: React.FC = () => {
+  const styles = {
+    border: "1px solid",
+  };
+
+  return (
+    <div>
+      <Container styles={styles} />
+    </div>
+  );
+};
+
+export default App;
+```
+
+```jsx
+type ContainerProps = {
+  styles: React.CSSProperties,
+};
+
+export default function Container(props: ContainerProps) {
+  return (
+    <div>
+      <p style={props.styles}> Text content goes here</p>
+    </div>
+  );
+}
+```

@@ -1,25 +1,14 @@
-import { useState } from "react";
-import Button from "./components/Button";
-import Input from "./components/Input";
-interface InputProps {
-  name: string;
-}
+import React from "react";
+import Container from "./components/Container";
+
 const App: React.FC = () => {
-  const [userName, setUserName] = useState<InputProps>({ name: "" });
-  const handleClick = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    id: number
-  ) => {
-    console.log(id , event);
+  const styles = {
+    border: "1px solid",
   };
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUserName({ name: event.target.value });
-    console.log(userName);
-  };
+
   return (
     <div>
-      <Button handleClick={handleClick}></Button>
-      <Input value={userName.name} onChange={onChange} />
+      <Container styles={styles} />
     </div>
   );
 };
