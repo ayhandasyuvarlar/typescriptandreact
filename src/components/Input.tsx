@@ -1,8 +1,7 @@
+import { InpuProps } from "../types/InputProps.types";
 
-import { InpuProps } from "../types/InputProps";
-
-const Input = (props: InpuProps) => {
-  return <input value={props.value} onChange={props.onChange}></input>;
+const Input = ({ value, onChange }: InpuProps) => {
+  return <input value={value} onChange={onChange}></input>;
 };
 
 export default Input;

@@ -19,21 +19,28 @@ npm run dev
 # First section (Typing Props)
 
 ```javascript
-// GreetProps.tsx
 export type GreetProps = {
   name: string,
+  age: number,
+  isStudent: boolean,
 };
 
 // Greet.tsx
-import { GreetProps } from "../types/GreetProps";
+import { GreetProps } from "../types/GreetProps.types";
 
 export const Greet = (props: GreetProps) => {
   return (
     <div>
       <h2> Welcome {props.name} ! You can begin ? </h2>
+      <p>Age : {props.age}</p>
+      <p>Student: {props.isStudent ? "Yes" : "No"}</p>
     </div>
   );
 };
+```
+
+```javascript
+<Greet name="John" age={25} isStudent={true} />
 ```
 
 # Basics Props
@@ -186,7 +193,7 @@ export default function Status(props: StatusProps) {
 ```
 
 ```javascript
-import { OscarProps } from "../types/Oscar";
+import { OscarProps } from "../types/Oscar.types";
 
 export default function Oscar({ children }: OscarProps) {
   return <div>{children}</div>;
@@ -194,7 +201,7 @@ export default function Oscar({ children }: OscarProps) {
 ```
 
 ```javascript
-import { HeadingProps } from "../types/Heading";
+import { HeadingProps } from "../types/Heading.types";
 
 export default function Heading({ children }: HeadingProps) {
   return <div>{children}</div>;
@@ -247,7 +254,7 @@ export type ButtonProps = {
 };
 
 import React from "react";
-import { ButtonProps } from "../types/ButtonProps";
+import { ButtonProps } from "../types/ButtonProps.types";
 
 const Button = (props: ButtonProps) => {
   return (
@@ -266,7 +273,7 @@ export type InpuProps = {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void,
 };
 
-import { InpuProps } from "../types/InputProps";
+import { InpuProps } from "../types/InputProps.types";
 
 const Input = (props: InpuProps) => {
   return <input value={props.value} onChange={props.onChange}></input>;
@@ -310,4 +317,36 @@ export default function Container(props: ContainerProps) {
     </div>
   );
 }
+```
+
+# Prop Types and Tips
+
+```javascript
+// InputProps.types.ts
+
+export type InpuProps = {
+  value: string,
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void,
+};
+```
+
+```javascript
+
+// after
+import { InpuProps } from "../types/InputProps.types";
+
+const Input = (props: InpuProps) => {
+  return <input value={props.value} onChange={props.onChange}></input>;
+};
+
+export default Input;
+
+//before
+import { InpuProps } from "../types/InputProps.types";
+
+const Input = ({ value, onChange }: InpuProps) => {
+  return <input value={value} onChange={onChange}></input>;
+};
+
+export default Input;
 ```

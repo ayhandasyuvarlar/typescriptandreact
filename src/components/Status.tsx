@@ -1,4 +1,4 @@
-import { StatusProps } from "../types/Status";
+import { StatusProps } from "../types/Status.types";
 
 export default function Status(props: StatusProps) {
   let message;
